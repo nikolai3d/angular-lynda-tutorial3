@@ -20,13 +20,14 @@
       </p>
       <!-- ^^^ A hint for a user if validation fails -->
       <input type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
-    </fieldset>
       <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">
         Password is required!
       </p>
       <p class="error validationerror" ng-show="myform.password.$valid && (user.password.length < 4) && myform.password.$touched">
         Password too short!
-      </p>
+      </p>   
+      </fieldset>
+ 
     <button type="submit" class="btn" ng-disabled="myform.$invalid">Login</button>
     <p>or <a href="#/register">register</a></p>
   </form>
