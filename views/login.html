@@ -5,13 +5,14 @@
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
       <p>{{ user }}</p>
-      <p>{{ myform.email }}</p>
+      <p>{{ myform.email.$valid }}</p>
     </div>
 
     <fieldset>
       <input type="email" name="email" 
       placeholder="Email" ng-model="user.email" ng-required="true">
-      
+      <!-- As we type in stuff, Angular injects validation classes into the form element, 
+          which we then recolor in css -->
       <input type="password" name="password" placeholder="Password">
     </fieldset>
 
