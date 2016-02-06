@@ -5,17 +5,27 @@
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
       <p>{{ user }}</p>
-      <p>{{ myform.email.$valid }}</p>
+      <p>Email: {{ myform.email.$valid }}</p>
+      <p>Password: {{ myform.password.$valid }}</p>
+
     </div>
 
     <fieldset>
-      <input type="email" name="email" 
-      placeholder="Email" ng-model="user.email" ng-required="true">
+      <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
       <!-- As we type in stuff, Angular injects validation classes into the form element, 
           which we then recolor in css -->
-      <input type="password" name="password" placeholder="Password">
+      <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">
+        Must be a valid email!
+      </p>
+      <!-- ^^^ A hint for a user if validation fails -->
+      <input type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
     </fieldset>
-
+      <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">
+        Password is required!
+      </p>
+      <p class="error validationerror" ng-show="myform.password.$valid && (user.password.length < 4) && myform.password.$touched">
+        Password too short!
+      </p>
     <button type="submit" class="btn">Login</button>
     <p>or <a href="#/register">register</a></p>
   </form>
