@@ -19,6 +19,17 @@ gApp.factory('Authentication', ['$rootScope', '$firebaseAuth',
                 });
 
                 fbPromise.then(function(fbUserReg) {
+                    
+                    var fbRegRef = new Firebase(FIREBASE_URL + 'users');
+                    
+                    fbRegRef.child(fbUserReg.uid).set({
+                        date:  Firebase.ServerValue.TIMESTAMP,
+                        regUser: fbUserReg.uid,
+                        firstname: user.firstname ,
+                        lastname: user.lastname , 
+                        email: user.email
+                    });
+                    
                     $rootScope.message = "Hello " + user.firstname + ", Thanks for registering";
                 }).catch(function(error) {
                     $rootScope.message = "ERROR: " + error.message;
