@@ -27,8 +27,10 @@
   </nav>
   
 </header>
-<div class="userinfo" ng-show="currentUser">
+<div class="userinfo" ng-show="currentUser" ng-controller="RegistrationController">
   <span class="userinfo"> Hi {{ currentUser.firstname }} </span>
+  <a ng-href="#/login" ng-click="logout()">Logout</a> <!-- since it's not inside ng-view, the routing does not bind controllers
+  Hence, the ng-controller="RegistrationController" in the enclosing div -->
 </div>
 <div class="page" ng-view>
   <main class="cf">{{ message }}</main>

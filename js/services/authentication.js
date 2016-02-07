@@ -23,7 +23,7 @@ gApp.factory('Authentication', ['$rootScope',
 // You can use the $loaded() promise to get notified when the data has loaded.
 // From https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebaseobject   
                 var userObj = $firebaseObject(fbUserRef);
-                $rootScope.currentUser = userObj;
+                $rootScope.currentUser = userObj; //This is how the webpage is gonna know the user is logged in
             } else {
                 $rootScope.currentUser = "";
             }
