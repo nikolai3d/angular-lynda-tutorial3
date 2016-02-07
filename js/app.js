@@ -1,4 +1,5 @@
-var gApp = angular.module('myApp', ['ngRoute']);
+var gApp = angular.module('myApp', ['ngRoute', 'firebase'])
+    .constant('FIREBASE_URL', 'https://angreg-nikolai3d.firebaseio.com/');
 
 
 gApp.config(['$routeProvider', function($routeProvider){
