@@ -29,7 +29,7 @@ gApp.factory('Authentication', ['$rootScope',
             }
         });
 
-        return {
+        var myAuthObject = {
             login: function(user) {
                 var fbAuthPromise = fbAuth.$authWithPassword({
                     email: user.email,
@@ -43,7 +43,7 @@ gApp.factory('Authentication', ['$rootScope',
                     $rootScope.message = "AUTH Error: " + error.message;
                 });
 
-                $rootScope.message = "Authenticating...";
+               // $rootScope.message = "Authenticating...";
 
             }, //login
             
@@ -80,11 +80,15 @@ gApp.factory('Authentication', ['$rootScope',
                     });
 
                     $rootScope.message = "Hello " + user.firstname + ", Thanks for registering";
+                    
+                    myAuthObject.login(user);
+                    
                 }).catch(function(error) {
                     $rootScope.message = "ERROR: " + error.message;
                 });
             }
         };
 
+        return myAuthObject;
     }
 ]);
