@@ -1,15 +1,29 @@
 //This way to encapsulate authentication in a service
 
-gApp.factory('Authentication', ['$rootScope', '$firebaseAuth',
+gApp.factory('Authentication', ['$rootScope',
+    '$firebaseAuth',
+    '$location',
     'FIREBASE_URL',
-    function($rootScope, $firebaseAuth, FIREBASE_URL) {
+    function($rootScope, $firebaseAuth, $location, FIREBASE_URL) {
 
         var fbRef = new Firebase(FIREBASE_URL);
         var fbAuth = $firebaseAuth(fbRef);
 
         return {
             login: function(user) {
-                $rootScope.message = "Welcome " + user.email;
+                var fbAuthPromise = fbAuth.$authWithPassword({
+                    email: user.email,
+                    password: user.password
+                });
+
+                fbAuthPromise.then(function(fbUserReg) {
+                    //Redirection in case of success
+                    $location.path('/success');
+                }).catch(function(error) {
+                    $rootScope.message = "AUTH Error: " + error.message;
+                });
+
+                $rootScope.message = "Authenticating...";
 
             },
             register: function(user) {
@@ -40,4 +54,3 @@ gApp.factory('Authentication', ['$rootScope', '$firebaseAuth',
 
     }
 ]);
-
