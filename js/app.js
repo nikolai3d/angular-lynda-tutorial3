@@ -16,6 +16,7 @@ gApp.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
+
 gApp.controller('appController', ['$scope', function($scope) {
     $scope.message="Welcome to my App";
 }]);
