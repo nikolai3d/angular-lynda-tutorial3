@@ -14,7 +14,12 @@
   <script type="text/javascript" src="js/controllers/success.js"></script>
 </head>
 <body>
-<header></header>
+<header>
+  <nav class="cf" ng-include="'views/nav.html'">
+    
+  </nav>
+  
+</header>
 <div class="page" ng-view>
   <main class="cf">{{ message }}</main>
 </div>
