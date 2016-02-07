@@ -51,6 +51,15 @@ gApp.factory('Authentication', ['$rootScope',
                 return fbAuth.$unauth();
             }, //logout 
             
+            
+            requireAuthentication: function() {
+                //$requireAuth: a helper method which returns a promise fulfilled with the current authentication state 
+                //if the user is authenticated but otherwise rejects the promise. 
+                //This is intended to be used in the resolve() method of Angular routers to prevented unauthenticated users 
+                //from seeing authenticated pages momentarily during page load
+                return fbAuth.$requireAuth();
+            },
+            
             register: function(user) {
                 var fbPromise = fbAuth.$createUser({
                     email: user.email,
